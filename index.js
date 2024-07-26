@@ -12,10 +12,6 @@ const port = 4000;
 app.use(express.json());
 app.use("/users", userRouter);
 
-app.get("/", (req, res) => {
-  res.send({ Message: "Success " });
-});
-
 // app.use((req, res, next) => {
 //   try {
 //     const token = req.headers.token;
@@ -31,6 +27,10 @@ app.use("/customer", customers);
 app.use("/appoint", appointments);
 app.use("/doctor", doctor);
 app.use("/patient", patient);
+
+app.get("/", (req, res) => {
+  res.send({ Message: "Success " });
+});
 
 mongoose
   .connect(process.env.DATABASE_URL)
