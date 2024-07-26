@@ -28,10 +28,6 @@ app.use("/appoint", appointments);
 app.use("/doctor", doctor);
 app.use("/patient", patient);
 
-app.use("/", (req, res) => {
-  res.send({ Message: "Success " });
-});
-
 mongoose
   .connect(process.env.DATABASE_URL)
   .then(() => {
@@ -40,6 +36,10 @@ mongoose
   .catch((error) => {
     console.log("Failed to connect to MongoDB");
   });
+
+app.use("/", (req, res) => {
+  res.send({ Message: "Success " });
+});
 
 app.listen(port, () => {
   console.log("listening on port: " + port);
