@@ -11,7 +11,9 @@ const jwt = require("jsonwebtoken");
 const port = 4000;
 app.use(express.json());
 app.use("/users", userRouter);
-
+app.get("/", (req, res) => {
+  res.send({ Message: "Success " });
+});
 app.use((req, res, next) => {
   try {
     const token = req.headers.token;
@@ -36,10 +38,6 @@ mongoose
   .catch((error) => {
     console.log("Failed to connect to MongoDB");
   });
-
-app.get("/", (req, res) => {
-  res.send({ Message: "Success " });
-});
 
 app.listen(port, () => {
   console.log("listening on port: " + port);
