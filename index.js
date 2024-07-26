@@ -11,19 +11,21 @@ const jwt = require("jsonwebtoken");
 const port = 4000;
 app.use(express.json());
 app.use("/users", userRouter);
+
 app.get("/", (req, res) => {
   res.send({ Message: "Success " });
 });
-app.use((req, res, next) => {
-  try {
-    const token = req.headers.token;
-    if (!token) return res.send({ Message: "You aren't allowed" });
-    const verifyUser = jwt.verify(token, "user");
-    console.log(verifyUser.id);
-    console.log(verifyUser.username);
-    next();
-  } catch (error) {}
-});
+
+// app.use((req, res, next) => {
+//   try {
+//     const token = req.headers.token;
+//     if (!token) return res.send({ Message: "You aren't allowed" });
+//     const verifyUser = jwt.verify(token, "user");
+//     console.log(verifyUser.id);
+//     console.log(verifyUser.username);
+//     next();
+//   } catch (error) {}
+// });
 
 app.use("/customer", customers);
 app.use("/appoint", appointments);
