@@ -37,7 +37,7 @@ mongoose
     console.log("Failed to connect to MongoDB");
   });
 
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send({ Message: "Success " });
 });
 
